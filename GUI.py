@@ -1,9 +1,52 @@
+# -*- coding: utf-8 -*-
+# 
+# """By Paolo, GUI - NEW Menu for flatness plots."""
+
+#For Difference plots
+import numpy as np
+
+import numpy.ma as ma
+
+import scipy.linalg
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+import pandas as pd
+from matplotlib.colors import Normalize
 
 
+#For other Operations
+import os
+import datetime
+
+workDir = os.getcwd()
+
+LDTopKeys = ['ld top','5'];
+HDTopKeys = ['hd top','HD Top', '7'];
+LDBotKeys = ['ld bot', "ld bottom"];
+LDRightKeys = ['ld right','right','2'];
+LDLeftKeys = ['ld left', '4'];
+LDFiveKeys = ['ld five'];
+LDFullKeys = ['ld full'];
+HDFullKeys = ['hd full','1'];
+HDBottomKeys = ['hd bottom','6']
+
+ShapePlotKeys = ['Shape','shape','curvature','1'];
+HeightDiffKeys = ['Heights','heights','difference','Difference','2'];
+
+Shapes = LDTopKeys + HDTopKeys + LDBotKeys+ LDRightKeys + LDLeftKeys + LDFiveKeys +LDFullKeys + HDFullKeys + HDBottomKeys;
+ProcessTypes = ShapePlotKeys + HeightDiffKeys;
 
 
+def get_recent_files(directory, num_files=200):
+    # Get all files in the directory
+    files = [os.path.join(directory, f) for f in os.listdir(directory) 
+             if os.path.isfile(os.path.join(directory, f)) and not (f.endswith('.png') or f.endswith('.pdf'))]
+    # Sort files by modification time in descending order
+    files.sort(key=os.path.getmtime, reverse=True)
+    # Return the most recent files
+    return files[:num_files]
 
-def OldMain():
+def Main():
     
     campaign = False;
     if campaign: 
@@ -157,20 +200,12 @@ def OldMain():
     #print(selected_file, folder_path, modulename, ShapeID)
     
     if ShapePlot is True:
-        Make_Diff_Plot(selected_file, selected_file, folder_path, modulename, modulename2, ShapeID, ShapePlot)
+        print(selected_file, selected_file, folder_path, modulename, modulename2, ShapeID, ShapePlot)
+        #Make_Diff_Plot(selected_file, selected_file, folder_path, modulename, modulename2, ShapeID, ShapePlot)
     elif DiffPlot is True:
-        Make_Diff_Plot(selected_file, selected_file2, folder_path, modulename, modulename2, ShapeID, ShapePlot)
+        print(selected_file, selected_file2, folder_path, modulename, modulename2, ShapeID, ShapePlot)
+        #Make_Diff_Plot(selected_file, selected_file2, folder_path, modulename, modulename2, ShapeID, ShapePlot)
         
-   
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-OldMain();
+Main();
     
